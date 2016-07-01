@@ -1,0 +1,433 @@
+body{
+	background-color: lightgray;
+	margin: 0px;
+	padding: 0px;
+}
+body * {
+	margin: 0px;
+	padding: 0px;
+}
+
+/*////////////////////////////// home.html ///////////////////////////////////*/
+.bg-video{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	min-height: 100%;
+	min-width: 100%;
+	width: auto;
+	height: auto;
+	z-index: -99;
+}
+.home-container{
+	width: 100VW;
+	height: auto;	
+}
+.home-container .vertical-center{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	width: 100VW;
+	height: 100VH;
+}
+.home-container .wrapper img{
+	box-shadow: 0 0 50px black;
+}
+.home-container .wrapper h1{
+	color: black;
+	font-size: 75px;
+	margin-bottom: 15px;
+	text-shadow: 2px 5px 4px white;
+}
+.home-container .wrapper p{
+	font-size: 30px;
+	font-family: "Raleway";
+	margin-bottom: 50px;
+}
+.home-container .wrapper a{
+	margin-top: 10px;
+}
+.home-container .sign-up{
+	width: 100VW;
+	background-color: white;
+	opacity: 0.9;
+	box-shadow: 0 0 20px black;
+	margin: 0 auto;
+	padding: 50px;
+}
+.home-container .sign-up h1{
+	font-family: "Lato";
+	font-size: 50px;
+	margin-bottom: 50px;
+	color: gray;
+}
+.home-container button{
+	font-family: "Raleway"
+}
+
+/*//////////////////////////// user-profile.html ////////////////////////////*/
+.user-profile{
+	width: 100VW;	/*Change to 100VW*/	
+	height: auto;	/*Change to auto*/
+}
+.user-profile .profile-sidebar{
+	background-color: lightyellow;
+	height: 100VH;	/*Change to 100VH*/	
+	/*position: fixed;	Change to fixed later*/
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	/*border-right: 20px solid gray;*/
+	border-bottom-right-radius: 40%;
+	box-shadow: 0 0 50px black;
+
+}
+.user-profile .profile-info p{
+	font-size: 17.5px;
+	font-family: "Raleway";
+}
+.user-profile .profile-info{
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	margin-top: 50px;
+}
+.user-profile .user-name{
+	font-family: "Lato";
+}
+.user-profile .deed-content{
+	height: auto;
+}
+.user-profile .search-box input{
+	background-color: lightgray;
+}
+.user-profile .posts-following{
+	border: 1px solid black;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-around;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.user-profile .posts-following a{
+	color: black;
+	text-decoration: none;
+}
+.user-profile .posts-following a:hover h2{
+	color: #09AEE6;
+}
+.user-profile .settings {
+	padding: 0px;
+	margin: 5px 0px 0px 0px;
+    font-family: "Lato";
+	font-size: 20px;
+}
+.user-profile .settings a{
+	text-decoration: none;
+	color: gray;
+}
+.user-profile .settings a:hover{
+	border-bottom: 10px solid black;
+	color: black;
+}
+.user-profile .textbox{
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	margin-top: 15px;
+}
+.user-profile .user-header{
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+}
+.user-profile .user-header img{
+	width: 50px;
+	height: 50px;
+}
+.user-profile .user-header p{
+	font-family: "Raleway";
+	font-size: 20px;
+	margin-left: 5px;
+}
+.user-profile .f-name{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
+.user-profile .textarea{
+	margin-left: 55px;
+}
+.user-profile textarea{
+	resize: none;
+	background-color: lightgray;
+	border-radius: 0px;
+}
+.user-profile .post-button{
+	margin-left: 55px;
+	font-family: "Raleway";
+}
+.user-profile .posts{
+	padding: 20px 0px 20px 55px;
+}
+.user-profile .post-reaction{
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.user-profile .reaction{
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+}
+.user-profile .reaction sub{
+	color: black;
+	font-size: 10px;
+	font-family: "Lato"
+}
+.user-profile .reaction button{
+	border-radius: 0px;
+	box-shadow: 0 0 5px black;
+}
+.user-profile .post{
+	background-color: white;
+/*	box-shadow: 0 0 5px black;
+*/	padding: 10px;
+}
+.user-profile .post .f-name p{
+	font-size: 13px;
+	font-family: arial;
+}
+.user-profile .bold{
+	font-weight: bold;
+}
+.user-profile .gray{
+	color: gray;
+}
+.user-profile .post-content{
+	margin-left: 55px;
+}
+.user-profile .unblock{
+	margin-left: 10px;
+}
+
+/*///////////////////////// new-user-success.html ///////////////////////////*/
+.new-user-success{
+	width: 100VW;
+	height: 100VH;
+	background: rgba(255,255,255, 0.9);
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
+.new-user-success img{
+	width: 200px;
+	height: auto;
+}
+.new-user-success h2{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.new-user-success p{
+	font-size: 18px;
+	font-family: "Open Sans";
+}
+.new-user-success .profile-link{
+	margin-top: 50px;
+}
+
+/*/////////////////////////// search-users.html //////////////////////////////*/
+.search-users{
+	width: auto;
+	height: auto;
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	border: 2px solid green;
+}
+.search-users .each-search-result{
+	border: 2px solid orange;
+	margin: 10px;
+	overflow: auto;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	height: 125px;
+}
+.search-users a{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	color: white;
+	font-family: "Lato";
+	font-size: 20px;
+}
+.search-users .check{
+	margin-bottom: 5px;
+}
+.search-users .profile-pic{
+	height: 125px;
+}
+
+/* ///////////////////////////// ideeds.html /////////////////////////////////*/
+.ideeds .header {
+	border-bottom: 5px solid black;
+}
+.ideeds .header h1{
+	font-family: "Lato";
+	margin: 5px 0px 0px 0px;
+	color: gray;
+}
+
+/*////////////////////////////// followers.html //////////////////////////////*/
+.followers .each-search-result{
+	background-color: white;
+	box-shadow: 0 0 10px black;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	overflow: hidden;
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	height: 125px;
+}
+.followers a{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	color: white;
+	font-family: "Lato";
+	font-size: 20px;
+}
+.followers .check{
+	margin-bottom: 5px;
+}
+.followers .profile-pic{
+	height: 125px;
+	margin-right: 15px;
+}
+
+.followers .header {
+	border-bottom: 5px solid black;
+}
+.followers .header h1{
+	font-family: "Lato";
+	margin: 5px 0px 0px 0px;
+	color: gray;
+}
+
+/*////////////////////////////// followers.html //////////////////////////////*/
+.following .each-search-result{
+	background-color: white;
+	box-shadow: 0 0 10px black;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	overflow: hidden;
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	height: 125px;
+}
+.following a{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	color: white;
+	font-family: "Lato";
+	font-size: 20px;
+}
+.following .check{
+	margin-bottom: 5px;
+}
+.following .profile-pic{
+	height: 125px;
+	margin-right: 15px;
+}
+.following .header {
+	border-bottom: 5px solid black;
+}
+.following .header h1{
+	font-family: "Lato";
+	margin: 5px 0px 0px 0px;
+	color: gray;
+}
+
+/*//////////////////////////// favorites.html ////////////////////////////////*/
+.favorites .header {
+	border-bottom: 5px solid black;
+}
+.favorites .header h1{
+	font-family: "Lato";
+	margin: 5px 0px 0px 0px;
+	color: gray;
+}
+
+/*//////////////////////////// nav-tmpl.html /////////////////////////////////*/
+.nav {
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	border-bottom-left-radius: 25px;
+	border-top-left-radius: 25px;
+	/*border-bottom-right-radius: 100%;
+	border-top-right-radius: 25px;*/
+	background-color: black;
+	margin-bottom: 10px;
+}
+.nav .tabs{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	margin: 10px;
+}
+.nav img{
+	width: auto;
+	height: 50px;
+	border-radius: 50%;
+}
+.nav a{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	margin: 5px 10px 5px 10px;
+	text-decoration: none;
+	color: white;
+	opacity: 0.7;
+	font-family: "Raleway";
+}
+.nav a:hover{
+	color: white;
+	opacity: 2.0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

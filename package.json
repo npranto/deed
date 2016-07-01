@@ -1,0 +1,16 @@
+{
+  "name": "deed",
+  "version": "0.0.1",
+  "description": "Deed is a mini social networking app that anyone can use to share their good deeds throughout the day. Users will be able to post, share and be inspired by other's deeds on their home feed. Deed is an user generated content based app that aims to break a single circle of friends and their stories, rather opens new perspectives from new individuals everyday to create a positive outlook for the world around us.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nazmuz Shakib Pranto",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.3"
+  }
+}
