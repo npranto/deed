@@ -17,7 +17,7 @@
 					<h1>Pranto</h1>
 				</div>
 				<div class="posts-following col-md-12">
-					<a ui-sref=".iDeed">
+					<a ui-sref=".iDeeds">
 						<p>iDEEDS</p>
 						<h2 class="text-center">50</h2>
 					</a>
@@ -78,8 +78,10 @@
 			</div>
 
 			<div class="posts">
+
+				<div ui-view="homeFeed"></div>
 				
-				<div ui-view="iDeed"></div>
+				<div ui-view="iDeeds"></div>
 				
 				<div ui-view="followers"></div>
 

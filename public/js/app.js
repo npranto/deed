@@ -24,10 +24,15 @@ angular.module('Deed', ['ui.router'])
 				url: '/user/search-users',
 				templateUrl: './views/search-users.html'
 			})
-			.state('userProfile.iDeed',{
+			.state('homeFeed',{
+				url: '/home-feed',
+				templateUrl: './views/home-feed.html'
+			})
+
+			.state('userProfile.iDeeds',{
 				url: '/ideeds',
 				views : {
-				    'iDeed' : {
+				    'iDeeds' : {
 				    	templateUrl: './views/ideeds.html',
 				    }
 			    }
@@ -49,13 +54,14 @@ angular.module('Deed', ['ui.router'])
 				}
 			})
 			.state('userProfile.favorites', {
-				url: '/....',
+				url: '/favorites',
 				views: {
 					'favorites':{
 						templateUrl: './views/favorites.html'
 					}
 				}
 			})
+
 
 
 

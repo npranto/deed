@@ -116,6 +116,9 @@ body * {
 .user-profile .posts-following a:hover h2{
 	color: #09AEE6;
 }
+.user-profile .posts-following a:hover p{
+	color: gray;
+}
 .user-profile .settings {
 	padding: 0px;
 	margin: 5px 0px 0px 0px;
