@@ -19,19 +19,6 @@ app.use(express.static(__dirname + '/public'));
 masterRoutes(app);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////
 app.listen(port, ()=>{
 	console.log(`Express listening on ${port}`);
