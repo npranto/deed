@@ -11,7 +11,9 @@ angular.module('Deed')
 			return $http.post('/api/user/login', user);
 		}
 
-
+		this.startSession = function () {
+			return $http.post('/api/startSession');
+		}
 
 
 // end of homeService		

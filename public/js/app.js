@@ -16,10 +16,6 @@ angular.module('Deed', ['ui.router'])
 				url: '/newUserSuccess',
 				templateUrl: './views/new-user-success.html'
 			})
-			.state('settings',{
-				url: '/settings',
-				templateUrl: './views/settings.html'
-			})
 			.state('searchUsers',{
 				url: '/user/search-users',
 				templateUrl: './views/search-users.html'
@@ -29,6 +25,7 @@ angular.module('Deed', ['ui.router'])
 				templateUrl: './views/home-feed.html'
 			})
 
+			// views inside userProfile
 			.state('userProfile.iDeeds',{
 				url: '/ideeds',
 				views : {

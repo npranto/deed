@@ -69,9 +69,11 @@ body * {
 .user-profile{
 	width: 100VW;	/*Change to 100VW*/	
 	height: auto;	/*Change to auto*/
+	background-color: white;
+	opacity: 0.9;
 }
 .user-profile .profile-sidebar{
-	background-color: lightyellow;
+	background-color: #5DCE00;
 	height: 100VH;	/*Change to 100VH*/	
 	/*position: fixed;	Change to fixed later*/
 	display: flex;
@@ -81,6 +83,9 @@ body * {
 	border-bottom-right-radius: 40%;
 	box-shadow: 0 0 50px black;
 
+}
+.user-profile .profile-pic img{
+	box-shadow: 0 0 10px black;
 }
 .user-profile .profile-info p{
 	font-size: 17.5px;
@@ -114,23 +119,25 @@ body * {
 	text-decoration: none;
 }
 .user-profile .posts-following a:hover h2{
-	color: #09AEE6;
-}
-.user-profile .posts-following a:hover p{
 	color: gray;
 }
-.user-profile .settings {
+.user-profile .posts-following a:hover p{
+	color: white;
+}
+.user-profile .log-sett {
+	border-left: 5px solid black;
 	padding: 0px;
 	margin: 5px 0px 0px 0px;
     font-family: "Lato";
 	font-size: 20px;
 }
-.user-profile .settings a{
+.user-profile .log-sett a{
 	text-decoration: none;
+	margin-left: 10px;
 	color: gray;
 }
-.user-profile .settings a:hover{
-	border-bottom: 10px solid black;
+.user-profile .log-sett a:hover{
+	cursor: pointer;
 	color: black;
 }
 .user-profile .textbox{

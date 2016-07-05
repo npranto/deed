@@ -1,8 +1,8 @@
-<video autoplay loop muted class="bg-video">
+<!-- <video autoplay loop muted class="bg-video">
 	<source src="./videos/bg-video10.mp4" type="video/mp4">
-</video>
+</video> -->
 
-<div class="container user-profile">
+<div class="container user-profile" ng-controller="userProfileCtrl">
 	<div class="row">
 
 	<!-- profile-sidebar -->
@@ -13,11 +13,11 @@
 					<img class="img-responsive center-block img-circle" src="./img/NSP.jpg" alt="./img/NSP.jpg"> 
 				</div>
 				<div class="user-name text-center">
-					<h1>Nazmuz</h1>
-					<h1>Pranto</h1>
+					<h1>{{profile.firstName}}</h1>
+					<h1>{{profile.lastName}}</h1>
 				</div>
 				<div class="posts-following col-md-12">
-					<a ui-sref=".iDeeds">
+					<a ui-sref=".iDeeds" ng-click="iDeeds()">
 						<p>iDEEDS</p>
 						<h2 class="text-center">50</h2>
 					</a>
@@ -41,8 +41,9 @@
 					</blockquote>
 				</div>
 			</div>
-			<div class="settings col-md-7">
-				<a href=""><p>Settings</p></a>
+			<div class="log-sett col-md-2">
+				<a ng-click="logout()">Logout</a>
+				<a href="">Settings</a>
 			</div>
 		</div>
 
@@ -70,10 +71,10 @@
 					</div>
 				</div>
 				<div class="textarea">
-					<textarea class="form-control" rows="4" placeholder="Write a good deed ..."></textarea>
+					<textarea ng-model="deedContent" class="form-control" rows="4" placeholder="Write a good deed ..."></textarea>
 				</div>
 				<div class="post-button text-right">
-					<button href="#" class="btn btn-block btn-primary btn-primary"><span class="glyphicon glyphicon-plus"></span> Post</button>
+					<button ng-click="postDeed(deedContent, profile._id)" class="btn btn-block btn-primary btn-primary"><span class="glyphicon glyphicon-plus"></span> Post</button>
 				</div>
 			</div>
 

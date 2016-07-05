@@ -1,6 +1,10 @@
 angular.module('Deed')
-	.controller('homeCtrl', function ($scope, homeService) {
+	.controller('homeCtrl', function ($scope, homeService, $state) {
 		
+		$scope.startSession =  function () {
+			homeService.startSession();
+		}
+
 		$scope.createNewUser = function (newUser) {
 			homeService.createNewUser(newUser);
 		}	
@@ -8,10 +12,12 @@ angular.module('Deed')
 		$scope.login = function (user) {
 			homeService.login(user)
 			.then((response)=>{
-				console.log(response.data);
-				localStorage.setItem('User-Info', JSON.stringify(response.data));
+				$state.go('userProfile');
 			})
 		}
+
+		$scope.startSession();
+
 
 
 
