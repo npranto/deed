@@ -1,17 +1,16 @@
-<div class="post-reaction">
+<div class="post-reaction" ng-repeat="deed in deeds">
 	<div class="post">
 		<div class="user-header">
 			<img class="img-responsive img-cube" src="./img/NSP.jpg" alt="./img/NSP.jpg">
 			<div class="f-name"> 
-				<p class="bold">@nazmuz</p>
-				<p class="gray">July 10, 2016, 9:45 PM</p>
+				<p class="bold">{{author}}</p>
+				<p class="gray">{{date | date : 'EEEE, MMMM d, y h:mm a'}}</p>
 			</div>
 		</div>
 		<div class="post-content">
 			<blockquote>
-				<div class="unblock" ng-repeat="deed in deeds">
-				    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-				    <footer><cite title="Source Title">Nazmuz Shakib Pranto</cite></footer>
+				<div class="unblock">
+				    <p>{{deed.textContent}}</p>
 				</div>
 			</blockquote>
 		</div>
@@ -19,7 +18,7 @@
 
 	<div class="reaction">
 		<div class="favorite">
-			<button href="#" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-star"></span></button>
+			<button ng-click="favorite(deed._id)" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-star"></span></button>
 		</div>
 		<div class="like">
 			<button href="#" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-thumbs-up"><sub> 10</sub></span></button>

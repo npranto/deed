@@ -12,12 +12,29 @@ angular.module('Deed')
 			return $http.post('/api/user/logout');
 		};
 
-		// this.postDeed = function (deedContent, userId) {
-		// 	return $http.post('/api/user/postDeed', {
-		// 		author: userId,
-		// 		textContent: deedContent
-		// 	});	
-		// };
+		this.postDeed = function (deed, userId) {
+			return $http.post('/api/user/postDeed', {
+				author: userId,
+				textContent: deed.textContent
+			})
+		}
+
+		this.iDeeds = function (userId) {
+			return $http.get('/api/user/iDeeds', {
+				_id: userId
+			})
+		}
+
+
+
+
+
+
+
+
+
+
+
 
 		
 // end of userProfileService

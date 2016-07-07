@@ -50,24 +50,92 @@ module.exports = {
 		res.status(200).json();
 	},
 
-	// postDeed (req, res, next){
-	// 	User.findById(req.body.author, (err, userFound)=>{
-	// 		console.log("userFound", userFound);
-	// 	})
-	// 	.exec(function (err, author) {
-	// 		new Deed({
-	// 			author: author,
-	// 			textContent: req.body.textContent
-	// 		}).save( (err, deedPosted) =>{
-	// 			if (err) {
-	// 				return res.status(500).json(err);
-	// 			}
-	// 			return res.status(200).json(deedPosted);
-	// 		});
-	// 	});
+	postDeed (req, res, next){
+		User.findById(req.body.author, (err, userFound)=>{
+			
+			req.body.author = userFound;
 
-	// },
+			new Deed(req.body).save( (err, deedPosted)=>{
+				if (err) {
+					return res.status(500).json(err);
+				}
+				userFound.iDeeds.push(deedPosted);
+				userFound.save((err, result)=>{
+					console.log(result)
+					return res.status(200).json(deedPosted);
+				});
+				
+			})
+		})
+	},
 
+	iDeeds(req, res, next){
+		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{})
+		.populate('iDeeds')
+		.exec((err, result)=>{
+			if (err) {
+				return res.status(500).json(err);
+			}
+			return res.status(200).json(result);
+
+		})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+		// 	Deed.find({author:req.body._id}, (err, deedsFound)=>{
+		// 		if (err) {
+		// 			return res.status(500).json(err);
+		// 		}
+		// 		// console.log("DEEDFOUND", deedsFound);
+		// 		for (var i = 0; i < deedsFound.length; i++) {
+		// 			userFound.iDeeds.push(deedsFound[i]._id);
+		// 		}
+		// 		console.log("DEEDFOUND", deedsFound);
+		// 		console.log("USERFOUND", userFound);
+		// 		return res.status(200).json(userFound);
+		// 	})
+		// 	// User.findById(userFound._id, (err, u)=>{})
+		// 	// .populate('User')
+		// 	// .exec(function (err, updated) {
+		// 	// 	console.log("UPDATED", updated);
+		// 	// })
+		// })
+		// // .populate('User', 'iDeeds')
+		// // .exec(function (err, updated) {
+		// // 	console.log("UPDATED", updated);
+		// // })
+
+
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	
 
 		

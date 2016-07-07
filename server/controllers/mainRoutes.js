@@ -6,5 +6,6 @@ module.exports = (app)=>{
 	app.post('/api/user/login', userCtrl.login);
 	app.get('/api/user/getProfile', userCtrl.getProfile);
 	app.post('/api/user/logout', userCtrl.logout);
-	// app.post('/api/user/postDeed', userCtrl.postDeed);
+	app.post('/api/user/postDeed', userCtrl.postDeed);
+	app.get('/api/user/iDeeds', userCtrl.iDeeds)
 }

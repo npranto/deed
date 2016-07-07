@@ -71,10 +71,10 @@
 					</div>
 				</div>
 				<div class="textarea">
-					<textarea ng-model="deedContent" class="form-control" rows="4" placeholder="Write a good deed ..."></textarea>
+					<textarea ng-model="deed.textContent" class="form-control" rows="4" placeholder="Write a good deed ..."></textarea>
 				</div>
 				<div class="post-button text-right">
-					<button ng-click="postDeed(deedContent, profile._id)" class="btn btn-block btn-primary btn-primary"><span class="glyphicon glyphicon-plus"></span> Post</button>
+					<button ng-click="postDeed(deed)" class="btn btn-block btn-primary btn-primary"><span class="glyphicon glyphicon-plus"></span> Post</button>
 				</div>
 			</div>
 
