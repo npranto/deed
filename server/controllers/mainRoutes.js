@@ -1,4 +1,5 @@
-const userCtrl = require('./userCtrl.js')
+const userCtrl = require('./userCtrl.js');
+const deedCtrl = require('./deedCtrl.js');
 
 module.exports = (app)=>{
 	app.post('/api/startSession', userCtrl.startSession);
@@ -7,5 +8,8 @@ module.exports = (app)=>{
 	app.get('/api/user/getProfile', userCtrl.getProfile);
 	app.post('/api/user/logout', userCtrl.logout);
 	app.post('/api/user/postDeed', userCtrl.postDeed);
-	app.get('/api/user/iDeeds', userCtrl.iDeeds)
+	app.get('/api/user/iDeeds', userCtrl.getiDeeds);
+	app.get('/api/user/feeds', userCtrl.getFeeds);
+	app.post('/api/deed/makeFavorite', deedCtrl.makeFavorite);
+	app.get('/api/user/favorites', userCtrl.getFavorites)
 }

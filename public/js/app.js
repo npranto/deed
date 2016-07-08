@@ -10,7 +10,8 @@ angular.module('Deed', ['ui.router'])
 			})
 			.state('userProfile', {
 				url: '/user/profile',
-				templateUrl: './views/user-profile.html'
+				templateUrl: './views/user-profile.html',
+				controller: 'userProfileCtrl'
 			})
 			.state('newUserSuccess', {
 				url: '/newUserSuccess',
@@ -20,12 +21,16 @@ angular.module('Deed', ['ui.router'])
 				url: '/user/search-users',
 				templateUrl: './views/search-users.html'
 			})
-			.state('homeFeed',{
-				url: '/home-feed',
-				templateUrl: './views/home-feed.html'
-			})
 
 			// views inside userProfile
+			.state('userProfile.homeFeed',{
+				url: '/homeFeed',
+				views : {
+				    'homeFeed' : {
+				    	templateUrl: './views/home-feed.html',
+				    }
+			    }
+			})
 			.state('userProfile.iDeeds',{
 				url: '/ideeds',
 				views : {

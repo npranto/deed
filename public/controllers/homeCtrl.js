@@ -12,6 +12,7 @@ angular.module('Deed')
 		$scope.login = function (user) {
 			homeService.login(user)
 			.then((response)=>{
+				console.log(response);
 				$state.go('userProfile');
 			})
 		}

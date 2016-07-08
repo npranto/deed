@@ -9,7 +9,7 @@ module.exports = {
 		if (!req.session.SESSION) {
 			req.session.SESSION = [];
 		}
-		console.log(req.session);
+		// console.log(req.session);
 		res.status(200).json();
 	},
 
@@ -19,7 +19,10 @@ module.exports = {
 			if (err) {
 				return res.status(500).json(err);
 			}
+			console.log(userCreated);
 			// console.log(userCreated);
+			req.session.SESSION.push(userCreated);
+			console.log(req.session);
 			return res.status(201).json(userCreated);
 		})
 	},
@@ -38,7 +41,7 @@ module.exports = {
 
 	// getProfile return all info for the logged in user
 	getProfile(req, res, next){
-		console.log(req.session);
+		// console.log(req.session);
 		res.status(200).json(req.session.SESSION);
 	},
 
@@ -61,7 +64,7 @@ module.exports = {
 				}
 				userFound.iDeeds.push(deedPosted);
 				userFound.save((err, result)=>{
-					console.log(result)
+					// console.log(result)
 					return res.status(200).json(deedPosted);
 				});
 				
@@ -69,7 +72,7 @@ module.exports = {
 		})
 	},
 
-	iDeeds(req, res, next){
+	getiDeeds(req, res, next){
 		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{})
 		.populate('iDeeds')
 		.exec((err, result)=>{
@@ -79,67 +82,47 @@ module.exports = {
 			return res.status(200).json(result);
 
 		})
+	},
 
+	getFeeds(req, res, next){
+		Deed.find((err, allDeeds)=>{
+			// console.log("ALLDEEDS", allDeeds);
+			if (err) {
+				return res.status(500).json(err);
+			}
+		})
+		.populate('author')
+		.exec((err, result)=>{
+			if (err) {
+				return res.status(500).json(err);
+			}
+			// console.log(result);
+			return res.status(200).json(result);		
+		})
+	},
 
-
-
-
-
-
-
-
-
-
-
-
-
-		// User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
-		// 	Deed.find({author:req.body._id}, (err, deedsFound)=>{
-		// 		if (err) {
-		// 			return res.status(500).json(err);
-		// 		}
-		// 		// console.log("DEEDFOUND", deedsFound);
-		// 		for (var i = 0; i < deedsFound.length; i++) {
-		// 			userFound.iDeeds.push(deedsFound[i]._id);
-		// 		}
-		// 		console.log("DEEDFOUND", deedsFound);
-		// 		console.log("USERFOUND", userFound);
-		// 		return res.status(200).json(userFound);
-		// 	})
-		// 	// User.findById(userFound._id, (err, u)=>{})
-		// 	// .populate('User')
-		// 	// .exec(function (err, updated) {
-		// 	// 	console.log("UPDATED", updated);
-		// 	// })
-		// })
-		// // .populate('User', 'iDeeds')
-		// // .exec(function (err, updated) {
-		// // 	console.log("UPDATED", updated);
-		// // })
-
-
-
-
+	getFavorites(req, res, next){
+		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+			if (err) {
+				return res.status(500).json(err);
+			}
+		})
+		.populate('favorites')
+		.exec((err, favPopulated)=>{
+			if (err) {
+				return res.status(500).json(err);
+			}
+			User.populate(favPopulated, {
+				path: 'favorites.author',
+				model: 'User'
+			}, (err, authorPopulated)=>{
+				return res.status(200).json(authorPopulated);
+			})
+			
+		})
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-		
-	
 
 
 

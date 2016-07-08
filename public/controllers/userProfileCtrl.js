@@ -9,6 +9,7 @@ angular.module('Deed')
 				$scope.profile = response.data[0];
 				console.log($scope.profile);
 				userId = $scope.profile._id;
+				// $state.go('userProfile.homeFeed');
 				console.log(userId);
 			})
 		};
@@ -21,25 +22,55 @@ angular.module('Deed')
 			
 		};
 
+		$scope.getFeeds = function () {
+			userProfileService.getFeeds()
+			.then((response)=>{
+				console.log(response);
+				$scope.feeds = response.data.reverse();
+			})
+
+		};
+
+		$scope.iDeeds = function (userId) {
+			userProfileService.getiDeeds(userId)
+			.then((response)=>{
+				console.log(response);
+				$scope.deeds = response.data.iDeeds.reverse();
+				$scope.author = response.data.firstName + " " + response.data.lastName;
+			})
+		};
+
 		$scope.postDeed = function (deed) {
 			userProfileService.postDeed(deed, userId)
 			.then((response)=>{
 				console.log(response);
 				$scope.deed.textContent = "";
+				$scope.getFeeds();
 				$scope.iDeeds(userId);
 			})
-		}
+		};
 
-		$scope.iDeeds = function (userId) {
-			userProfileService.iDeeds(userId)
+		$scope.makeFavorite = function (deedId) {
+			console.log(deedId);
+			userProfileService.makeFavorite(deedId)
 			.then((response)=>{
 				console.log(response);
-				$scope.author = response.data.firstName + " " + response.data.lastName;
-				$scope.date = response.data.createdAt;
-				$scope.deeds = response.data.iDeeds.reverse();
+			})
+		};
 
+		$scope.getFavorites = function () {
+			userProfileService.getFavorites()
+			.then((response)=>{
+				console.log(response);
+				$scope.favorites = response.data.favorites.reverse();
 			})
 		}
+
+		
+
+		
+
+
 
 
 

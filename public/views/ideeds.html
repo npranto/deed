@@ -3,7 +3,25 @@
 	<div class="header">
 		<h1>iDEEDS</h1>
 	</div>
-			
-	<post-dir></post-dir> 	<!-- ng-repeat over ideeds -->
+
+	<!-- ng-repeat over iDeeds -->
+	<div class="post-reaction" ng-repeat="deed in deeds">
+		<div class="post">
+			<div class="user-header">
+				<img class="img-responsive img-cube" src="./img/NSP.jpg" alt="./img/NSP.jpg">
+				<div class="f-name"> 
+					<p class="bold">{{author}}</p>
+					<p class="gray">{{deed.createdAt | date : 'EEEE, MMMM d, y'}}</p>
+				</div>
+			</div>
+			<div class="post-content">
+				<blockquote>
+					<div class="unblock">
+					    <p>{{deed.textContent}}</p>
+					</div>
+				</blockquote>
+			</div>
+		</div>
+	</div>
 
 </div>

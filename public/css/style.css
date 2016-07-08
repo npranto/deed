@@ -163,7 +163,7 @@ body * {
 .user-profile .f-name{
 	display: flex;
 	flex-flow: column;
-	justify-content: center;
+	justify-content: flex-start;
 }
 .user-profile .textarea{
 	margin-left: 55px;

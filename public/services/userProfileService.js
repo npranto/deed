@@ -17,15 +17,27 @@ angular.module('Deed')
 				author: userId,
 				textContent: deed.textContent
 			})
-		}
+		};
 
-		this.iDeeds = function (userId) {
+		this.getiDeeds = function (userId) {
 			return $http.get('/api/user/iDeeds', {
 				_id: userId
 			})
+		};
+
+		this.getFeeds = function () {
+			return $http.get('/api/user/feeds')
+		};
+
+		this.makeFavorite = function (deedId) {
+			return $http.post('/api/deed/makeFavorite', {
+				_id: deedId
+			})
+		};
+
+		this.getFavorites = function () {
+			return $http.get('/api/user/favorites');
 		}
-
-
 
 
 
