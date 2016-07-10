@@ -1,7 +1,7 @@
-<div class="post-reaction">
+<div class="post-reaction animated fadeInUp" >
 	<div class="post">
 		<div class="user-header">
-			<img class="img-responsive img-cube" src="./img/NSP.jpg" alt="./img/NSP.jpg">
+			<img class="img-responsive img-cube" ng-src="{{model.author.picture}}">
 			<div class="f-name"> 
 				<p class="bold">{{model.author.firstName}} {{model.author.lastName}}</p>
 				<p class="gray">{{model.createdAt | date : 'EEEE, MMMM d, y'}}</p>
@@ -18,16 +18,16 @@
 
 	<div class="reaction">
 		<div class="favorite">
-			<button ng-click="makeFavorite(model._id)" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-star"></span></button>
+			<button ng-click="makeFavorite(model._id)" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-star"><sub> {{model.stars.length}}</sub></span></button>
 		</div>
 		<div class="like">
-			<button href="#" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-thumbs-up"><sub> 10</sub></span></button>
+			<button ng-click="likePost(model._id)" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-thumbs-up"><sub> {{model.likes.length}}</sub></span></button>
 		</div>
 		<div class="love">
-			<button href="#" class="btn btn-block btn-primary btn-danger"><span class="glyphicon glyphicon-heart"><sub> 10</sub></span></button>
+			<button ng-click="lovePost(model._id)" class="btn btn-block btn-primary btn-danger"><span class="glyphicon glyphicon-heart"><sub> {{model.loves.length}}</sub></span></button>
 		</div>
-		<div class="tear-up">
-			<button href="#" class="btn btn-block btn-primary btn-warning"><span class="glyphicon glyphicon-eye-open"><sub> 10</sub></span></button>
+		<div class="sob">
+			<button ng-click="sobPost(model._id)" class="btn btn-block btn-primary btn-warning"><span class="glyphicon glyphicon-eye-open"><sub> {{model.sobs.length}}</sub></span></button>
 		</div>
 	</div>
 

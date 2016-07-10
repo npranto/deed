@@ -64,6 +64,9 @@ body * {
 .home-container button{
 	font-family: "Raleway"
 }
+.home-container textarea{
+	resize: none;
+}
 
 /*//////////////////////////// user-profile.html ////////////////////////////*/
 .user-profile{
@@ -86,6 +89,8 @@ body * {
 }
 .user-profile .profile-pic img{
 	box-shadow: 0 0 10px black;
+	width: auto;
+	height: auto;
 }
 .user-profile .profile-info p{
 	font-size: 17.5px;
@@ -99,8 +104,13 @@ body * {
 }
 .user-profile .user-name{
 	font-family: "Lato";
+	margin-top: 10px;
+	color: #4d4d4d;
 }
 .user-profile .deed-content{
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
 	height: auto;
 }
 .user-profile .search-box input{
@@ -108,6 +118,7 @@ body * {
 }
 .user-profile .posts-following{
 	border: 1px solid black;
+	border-radius: 50px;
 	display: flex;
 	flex-flow: row;
 	justify-content: space-around;
@@ -185,7 +196,8 @@ body * {
 	flex-flow: row;
 	justify-content: space-between;
 	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
+	box-shadow: 0 0 30px black;
 }
 .user-profile .reaction{
 	display: flex;
@@ -247,6 +259,23 @@ body * {
 .new-user-success .profile-link{
 	margin-top: 50px;
 }
+/*loading animation*/
+.new-user-success .profile-link h2{
+	color: #3BE206;
+	font-size: 50px;
+}
+.glyphicon-refresh-animate {
+    -animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
 
 /*/////////////////////////// search-users.html //////////////////////////////*/
 .search-users{
@@ -255,16 +284,29 @@ body * {
 	display: flex;
 	flex-flow: column;
 	justify-content: flex-start;
-	border: 2px solid green;
 }
 .search-users .each-search-result{
-	border: 2px solid orange;
 	margin: 10px;
 	overflow: auto;
 	display: flex;
 	flex-flow: row;
 	justify-content: space-between;
 	height: 125px;
+}
+.search-users .each-search-result .to-left{
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+}
+.search-users .user-info{
+	margin-left: 10px;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
+.search-users .user-info p{
+	color: gray;
+	font-size: 17.5px;
 }
 .search-users a{
 	display: flex;
@@ -273,6 +315,14 @@ body * {
 	color: white;
 	font-family: "Lato";
 	font-size: 20px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+.search-users .follow-button{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
 }
 .search-users .check{
 	margin-bottom: 5px;

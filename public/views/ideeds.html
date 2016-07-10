@@ -8,7 +8,7 @@
 	<div class="post-reaction" ng-repeat="deed in deeds">
 		<div class="post">
 			<div class="user-header">
-				<img class="img-responsive img-cube" src="./img/NSP.jpg" alt="./img/NSP.jpg">
+				<img class="img-responsive img-cube" ng-src="{{picture}}">
 				<div class="f-name"> 
 					<p class="bold">{{author}}</p>
 					<p class="gray">{{deed.createdAt | date : 'EEEE, MMMM d, y'}}</p>

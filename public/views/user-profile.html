@@ -6,11 +6,11 @@
 	<div class="row">
 
 	<!-- profile-sidebar -->
-		<div class="profile-sidebar col-md-4">
+		<div class="profile-sidebar col-md-4 animated fadeInLeft">
 
 			<div class="profile-info">
-				<div class="profile-pic col-md-6 col-md-offset-3">
-					<img class="img-responsive center-block img-circle" src="./img/NSP.jpg" alt="./img/NSP.jpg"> 
+				<div class="profile-pic col-md-8 col-md-offset-2">
+					<img class="img-responsive center-block img-rounded" src= {{profile.picture}} alt="./img/NSP.jpg"> 
 				</div>
 				<div class="user-name text-center">
 					<h1>{{profile.firstName}}</h1>
@@ -19,7 +19,7 @@
 				<div class="posts-following col-md-12">
 					<a ui-sref=".iDeeds" ng-click="iDeeds()">
 						<p>iDEEDS</p>
-						<h2 class="text-center">50</h2>
+						<h2 class="text-center">{{profile.iDeeds.length}}</h2>
 					</a>
 					<a ui-sref=".followers">
 						<p>FOLLOWERS</p>
@@ -31,13 +31,12 @@
 					</a>
 					<a ui-sref=".favorites" ng-click="getFavorites()">
 						<p>FAVORITES</p>
-						<h2 class="text-center">50</h2>
+						<h2 class="text-center">{{profile.favorites.length}}</h2>
 					</a>
 				</div>
 				<div class="quote">
 					<blockquote>
-				  		<p class="text-center">"Thinking good thoughts is not enough, <br>doing good deeds is not enough, <br>seeing others follow your good examples is enough."</p>
-				  		<footer class="text-center"><cite title="Source Title">Douglas Horton </cite></footer>
+				  		<p class="text-center">"{{profile.favoriteQuote}}"</p>
 					</blockquote>
 				</div>
 			</div>
@@ -48,26 +47,30 @@
 		</div>
 
 	<!-- deed-content -->
-		<div class="deed-content col-md-8">
+		<div class="deed-content col-md-8 animated slideInDown">
 			<nav-dir></nav-dir>
 
 			<div class="search-box col-md-6 col-md-offset-3">
 				<div class="input-group col-md-12">
-                    <input type="text" class="text-center search-query form-control" placeholder="Search" />
+                    <input ng-model="name" type="text" class="text-center search-query form-control" placeholder="Search" />
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="button">
+                        <button ui-sref=".searchUsers" ng-click="searchUsers(name)" class="btn btn-success" type="button">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </button>
                     </span>
                 </div>
 			</div>
+			<br>
+			<div class="col-md-8 col-md-offset-2">
+				<div ui-view="searchUsers"></div>
+			</div>
 
 			<div class="user-posts col-md-12">
 			<div class="textbox">
 				<div class="user-header">
-					<img class="img-responsive img-cube" src="./img/NSP.jpg" alt="./img/NSP.jpg">
+					<img class="img-responsive img-cube" src={{profile.picture}} alt="./img/NSP.jpg">
 					<div class="f-name"> 
-						<p>@nazmuz</p>
+						<p>@{{profile.firstName.toLowerCase()}}</p>
 					</div>
 				</div>
 				<div class="textarea">

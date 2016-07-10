@@ -1,4 +1,4 @@
-<!-- <video autoplay loop muted class="bg-video">
+  <!-- <video autoplay loop muted class="bg-video">
 	<source src="./videos/bg-video2.mp4" type="video/mp4">
 </video> -->
 
@@ -67,6 +67,11 @@
 			    	<label for="exampleInputEmail1">Last Name</label>
 				    <input ng-model="newUser.lastName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Last Name">
 			    </div>
+			    <div class="form-group col-md-12">
+			    	<label for="exampleInputEmail1">Favorite Quote</label>
+			    	<textarea ng-model="newUser.favoriteQuote" class="form-control" rows="3"></textarea>
+			    </div>
+		
 			    <!-- <div class="form-group col-md-6 col-md-offset-3">
 			    	<label for="exampleInputEmail1">Date of Birth</label>
 				    <input type="date" class="form-control" id="exampleInputPassword1">
@@ -80,13 +85,19 @@
 					<label class="radio-inline">
 					    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Female
 				    </label>
-			  	</div>
+			  	</div> -->
 			    <div class="form-group col-md-6 col-md-offset-3">
 	    			<label for="exampleInputFile">Upload Photo</label>
-				    <input type="file" id="exampleInputFile">
+				    
+				    <input filepicker type="filepicker" data-fp-services="computer, facebook" on-success="onSuccess(event.fpfile)"/>;
+
+				    <div class="picture-preview col-md-12" ng-show="showPicture">
+				    	<img class="img-responsive img-rounded" ng-src="{{pictureUrl}}" alt="pictureName" style="width:200px; height:200px">
+				    </div>
+
 				    <p class="help-block">Note: .jpeg | .png only</p>
-			  	</div> -->
-				<button ng-click="createNewUser(newUser)" ui-sref="newUserSuccess" class="col-md-8 col-md-offset-2 btn btn-primary">Create New Account</button>
+			  	</div>
+				<button ng-click="createNewUser(newUser)" class="col-md-8 col-md-offset-2 btn btn-primary">Create New Account</button>
 				<br>
 			</form>
 		</div>

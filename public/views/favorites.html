@@ -8,7 +8,7 @@
 	<div class="post-reaction" ng-repeat="favorite in favorites">
 		<div class="post">
 			<div class="user-header">
-				<img class="img-responsive img-cube" src="./img/NSP.jpg" alt="./img/NSP.jpg">
+				<img class="img-responsive img-cube" ng-src="{{favorite.author.picture}}"./>
 				<div class="f-name"> 
 					<p class="bold">{{favorite.author.firstName}} {{favorite.author.lastName}}</p>
 					<p class="gray">{{favorite.createdAt | date : 'EEEE, MMMM d, y'}}</p>

@@ -103,6 +103,7 @@ module.exports = {
 
 	getFavorites(req, res, next){
 		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+			console.log(userFound);
 			if (err) {
 				return res.status(500).json(err);
 			}
@@ -120,7 +121,21 @@ module.exports = {
 			})
 			
 		})
-	}
+	},
+
+	searchUsers(req, res, next){
+		console.log("HELLO");
+		console.log("FIRST NAME:", req.body);
+		User.find(req.body, (err, firstsFound)=>{
+			console.log(firstsFound);
+			if (err) {
+				return res.status(500).json(err);
+			}
+			return res.status(200).json(firstsFound);
+		})
+	},
+
+
 
 
 

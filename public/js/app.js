@@ -1,6 +1,8 @@
-angular.module('Deed', ['ui.router'])
-	.config(function ($stateProvider, $urlRouterProvider) {		
+angular.module('Deed', ['ui.router', 'angular-filepicker'])
+	.config(function ($stateProvider, $urlRouterProvider, filepickerProvider) {		
 		
+		filepickerProvider.setKey('A0gufrMTYQhqPGbsLunFDz');
+
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
@@ -15,14 +17,25 @@ angular.module('Deed', ['ui.router'])
 			})
 			.state('newUserSuccess', {
 				url: '/newUserSuccess',
-				templateUrl: './views/new-user-success.html'
-			})
-			.state('searchUsers',{
-				url: '/user/search-users',
-				templateUrl: './views/search-users.html'
+				templateUrl: './views/new-user-success.html',
+				resolve: {
+			        redirect: function ($state){
+				        window.setTimeout(function(){
+				        	$state.go('userProfile');
+				        }, 2000);
+			    	}
+      			}
 			})
 
 			// views inside userProfile
+			.state('userProfile.searchUsers',{
+				url: '/searchUsers',
+				views : {
+				    'searchUsers' : {
+				    	templateUrl: './views/search-users.html',
+				    }
+			    }
+			})
 			.state('userProfile.homeFeed',{
 				url: '/homeFeed',
 				views : {

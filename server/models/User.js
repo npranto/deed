@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
+// const moment = require('moment');
 
 const UserSchema = new mongoose.Schema({
 	email: {type: String, required: true, unique: true},
 	password: {type: String, required: true},
 	firstName: {type: String, required: true},
 	lastName: {type: String, required: true},
+	favoriteQuote: {type: String},
+	picture: {type: String, required: true},
 	createdAt: {type: Date, default: new Date()},
 	iDeeds: [{
 		type: mongoose.Schema.Types.ObjectId, ref: 'Deed',
