@@ -1,16 +1,15 @@
 <div class="search-users">
-	
-	<div class="each-search-result">	<!-- ng-repeat over all USERS -->
+	<div class="each-search-result" ng-repeat="user in users">	<!-- ng-repeat over all USERS -->
 		<div class="to-left">
-			<img src="./img/NSP.JPG" alt="Profile Pic" class="profile-pic">
+			<img ng-src="{{user.picture}}" alt="Profile Pic" class="profile-pic">
 			<div class="user-info">
-				<h3>Nazmuz Shakib Pranto</h3>
-				<p><strong>iDeeds</strong>: 54</p>
-				<p><strong>Followers</strong>: 20</p>
+			<h3>{{user.firstName}} {{user.lastName}}</h3>
+				<p><strong>iDeeds</strong>: {{user.iDeeds.length}}</p>
+				<p><strong>Followers</strong>: {{user.followers.length}}</p>
 			</div>
 		</div>
 		<div class="follow-button">
-			<a href="#" class="btn btn-success rounded"><span class="glyphicon glyphicon-ok check"></span> Follow</a>
+			<a ng-click="follow(user._id)" class="btn btn-success rounded"><span class="glyphicon glyphicon-ok check"></span>Follow</a>
 		</div>
 	</div>
 </div>

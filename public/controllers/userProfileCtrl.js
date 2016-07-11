@@ -36,7 +36,7 @@ angular.module('Deed')
 
 		};
 
-		$scope.iDeeds = function (userId) {
+		$scope.getiDeeds = function (userId) {
 			userProfileService.getiDeeds(userId)
 			.then((response)=>{
 				console.log(response);
@@ -46,13 +46,29 @@ angular.module('Deed')
 			})
 		};
 
+		$scope.getFollowing = function () {
+			userProfileService.getFollowing()
+			.then((response)=>{
+				console.log(response);
+				$scope.following = response.data.following;
+			});
+		};
+
+		$scope.getFollowers = function () {
+			userProfileService.getFollowers()
+			.then((response)=>{
+				console.log(response);
+				$scope.followers = response.data.followers;
+			});
+		};
+
 		$scope.postDeed = function (deed) {
 			userProfileService.postDeed(deed, userId)
 			.then((response)=>{
 				console.log(response);
 				$scope.deed.textContent = "";
 				$scope.getFeeds();
-				$scope.iDeeds(userId);
+				$scope.getiDeeds(userId);
 				$scope.getProfile();
 
 			})
@@ -104,26 +120,17 @@ angular.module('Deed')
 			console.log("FIRSTNAME",firstName);
 			userProfileService.searchUsers(firstName)
 			.then((response)=>{
-				console.log(response);
+				$scope.users = response.data;
 			})
 		}
 
-		
-
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
+		$scope.follow = function (userId) {
+			console.log("FOLLOW USERID", userId)
+			userProfileService.follow(userId)
+			.then((response)=>{
+				console.log(response);
+			})
+		}
 
 
 		$scope.getProfile();

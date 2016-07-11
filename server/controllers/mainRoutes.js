@@ -16,7 +16,11 @@ module.exports = (app)=>{
 	app.get('/api/user/iDeeds', userCtrl.getiDeeds);
 	app.get('/api/user/feeds', userCtrl.getFeeds);
 	app.get('/api/user/favorites', userCtrl.getFavorites);
-	app.get('/api/searchUsers', userCtrl.searchUsers);
+	app.put('/api/searchUsers', userCtrl.searchUsers);
 
 	app.put('/api/deed/likePost', deedCtrl.likePost);
+	app.post('/api/user/follow', userCtrl.follow);
+	app.get('/api/user/following', userCtrl.getFollowing);
+	app.get('/api/user/followers', userCtrl.getFollowers);
+
 }

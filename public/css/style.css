@@ -67,6 +67,10 @@ body * {
 .home-container textarea{
 	resize: none;
 }
+.home-container .picture-preview{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
 /*//////////////////////////// user-profile.html ////////////////////////////*/
 .user-profile{

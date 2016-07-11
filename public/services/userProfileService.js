@@ -26,6 +26,13 @@ angular.module('Deed')
 			})
 		};
 
+		this.getFollowing = function () {
+			return $http.get('/api/user/following');
+		}
+		this.getFollowers = function () {
+			return $http.get('/api/user/followers');
+		}
+
 		this.getFeeds = function () {
 			return $http.get('/api/user/feeds')
 		};
@@ -39,12 +46,6 @@ angular.module('Deed')
 		this.getFavorites = function () {
 			return $http.get('/api/user/favorites');
 		};
-
-		// this.likePost = function (deedId) {
-		// 	return $http.post('/api/deed/likePost', {
-		// 		_id: deedId
-		// 	});
-		// }
 
 		this.likePost = function (deedId) {
 			console.log(deedId);
@@ -67,11 +68,19 @@ angular.module('Deed')
 
 		this.searchUsers = function (fName) {
 			console.log("FIRSTNAME", fName);
-			return $http.get('/api/searchUsers', {
+			return $http.put('/api/searchUsers', {
 				firstName: fName
 			});
 		};
 
+		this.follow = function (userId) {
+			console.log("FOLLOW USERID", userId)
+			return $http.post('/api/user/follow', {
+				_id: userId
+			})
+		}
+
+		
 
 
 
