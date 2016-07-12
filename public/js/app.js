@@ -26,6 +26,10 @@ angular.module('Deed', ['ui.router', 'angular-filepicker'])
 			    	}
       			}
 			})
+			.state('settings', {
+				url: '/user/settings',
+				templateUrl: './views/settings.html',
+			})
 
 			// views inside userProfile
 			.state('userProfile.searchUsers',{

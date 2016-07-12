@@ -2,6 +2,7 @@ angular.module('Deed')
 	.controller('userProfileCtrl', function ($scope, userProfileService, $state) {
 		
 		let userId;
+		$scope.showPictures = false;
 
 		$scope.getProfile = function () {
 			userProfileService.getProfile()
@@ -131,6 +132,12 @@ angular.module('Deed')
 				console.log(response);
 			})
 		}
+
+		$scope.onSuccess = function (Blob){
+			console.log(Blob);
+			$scope.pictureUrl = Blob.url;
+			
+    	};
 
 
 		$scope.getProfile();

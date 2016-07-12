@@ -14,12 +14,13 @@ module.exports = {
 				if (err) {
 					return res.status(500).json(err);
 				}
-				userFound.favorites.push(deedFound);
+				
 				userFound.save((err, userSaved)=>{
 					console.log("userSaved", userSaved);
 				})
 				if ((deedFound.stars.indexOf(req.session.SESSION[0]._id)) === -1) {
 					deedFound.stars.push(userFound);
+					userFound.favorites.push(deedFound);
 				}
 				deedFound.save((err, deedSaved)=>{
 					console.log("RUNNING 1");
