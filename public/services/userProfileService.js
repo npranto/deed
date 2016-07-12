@@ -78,6 +78,12 @@ angular.module('Deed')
 			return $http.post('/api/user/follow', {
 				_id: userId
 			})
+		};
+
+		this.deleteFavorite = function (favoriteId) {
+			return $http.put('/api/user/deleteFavoriteDeed',{
+				_id: favoriteId
+			})
 		}
 
 		

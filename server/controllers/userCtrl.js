@@ -199,6 +199,24 @@ module.exports = {
 			console.log('followingPopulated', followersPopulated);
 			return res.status(200).json(followersPopulated);
 		})
+	},
+
+	deleteFavoriteDeed(req, res, next){
+		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+			if (err) {
+				return res.status(500).json(err);
+			}
+			userFound.favorites.splice(userFound.favorites.indexOf(req.body._id), 1);
+			userFound.save((err, userSaved)=>{})
+
+			Deed.findById(req.body._id, (err, deedFound)=>{
+				deedFound.stars.splice(deedFound.stars.indexOf(req.session.SESSION[0]._id), 1);
+				deedFound.save((err, deedSaved)=>{});
+			})
+
+
+			return res.status(200).json(userFound); 
+		})
 	}
 
 

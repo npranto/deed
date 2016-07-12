@@ -22,5 +22,6 @@ module.exports = (app)=>{
 	app.post('/api/user/follow', userCtrl.follow);
 	app.get('/api/user/following', userCtrl.getFollowing);
 	app.get('/api/user/followers', userCtrl.getFollowers);
+	app.put('/api/user/deleteFavoriteDeed', userCtrl.deleteFavoriteDeed);
 
 }

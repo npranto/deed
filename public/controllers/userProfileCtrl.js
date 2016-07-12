@@ -133,11 +133,19 @@ angular.module('Deed')
 			})
 		}
 
+		$scope.deleteFavorite = function(favoriteId){
+			userProfileService.deleteFavorite(favoriteId)
+			.then((response)=>{
+				$scope.getFavorites();
+			})
+		};
+
 		$scope.onSuccess = function (Blob){
 			console.log(Blob);
 			$scope.pictureUrl = Blob.url;
 			
     	};
+
 
 
 		$scope.getProfile();

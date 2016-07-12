@@ -430,7 +430,25 @@ body * {
 	margin: 5px 0px 0px 0px;
 	color: gray;
 }
-
+.favorites .post-reaction{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+.favorites .post-reaction .delete {
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+.favorites .post-reaction .delete a{
+	color: lightgray;
+}
+.favorites .post-reaction .delete a:hover{
+	cursor: pointer;
+	color: #D61111;
+}
 /*//////////////////////////// nav-tmpl.html /////////////////////////////////*/
 .nav {
 	display: flex;
@@ -469,7 +487,45 @@ body * {
 	opacity: 2.0;
 }
 
+/*//////////////////////////// settings.html //////////////////////////////*/
 
+.settings{
+	width: auto;
+	height: 100VH;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	border: 2px solid green;
+}
+.settings h1{
+	font-family: "Lato";
+	font-size: 50px;
+	margin-bottom: 50px;
+	color: gray;
+}
+.settings .settings-box{
+	height: auto;
+	width: 100VW;
+	background-color: white;
+}
+.settings .image-input img{
+	padding: 20px 0px 20px 0px;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-around;
+}
+.settings .form{
+	display: flex;
+	flex-flow: column;
+}
+.settings .buttons{
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+}
+.settings button{
+	margin: 5px;
+}
 
 
 

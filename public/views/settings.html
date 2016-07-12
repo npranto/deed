@@ -1,3 +1,52 @@
-<div class="settings">
-	
+<div class="container settings" ng-controller="settingsCtrl">
+	<div class="row settings-box animated slideInUp">
+		<h1 class="text-center">Settings</h1>
+		<div class="image-input col-md-12">
+			<div class="col-md-6">
+				<img class="img-responsive img-circle" ng-src="./img/edit-profile.jpg" alt="">
+			</div>
+			<div class="form col-md-6">
+				
+				<form>
+			    <div class="form-group col-md-6">
+			    	<label for="exampleInputEmail1">First Name</label>
+				    <input ng-model="newUser.firstName" name="firstName" type="text" class="form-control" id="exampleInputEmail1" placeholder={{user.firstName}} required>
+			    </div>
+			    <div class="form-group col-md-6">
+			    	<label for="exampleInputEmail1">Last Name</label>
+				    <input ng-model="newUser.lastName" type="text" name="lastName" class="form-control" id="exampleInputPassword1" placeholder={{user.lastName}} required>
+			    </div>
+			    <div class="form-group col-md-12">
+			    	<label for="exampleInputEmail1">New Password</label>
+				    <div class="input-group">
+	    				<span class="input-group-addon">⚭</span>
+	    				<input ng-model="newUser.password" name="password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" required>
+  					</div>
+			    </div>
+			    <div class="form-group col-md-12">
+			    	<label for="exampleInputEmail1">Favorite Quote</label>
+			    	<textarea ng-model="newUser.favoriteQuote" name="favoriteQuote" class="form-control" rows="3" placeholder={{user.favoriteQuote}} required></textarea>
+			    </div>
+			    <div class="form-group col-md-6 col-md-offset-3 text-center">
+	    			<label for="exampleInputFile">Upload Photo</label>
+				    
+				    <input filepicker type="filepicker" data-fp-services="computer, facebook" on-success="onSuccess(event.fpfile)" required/>;
+
+				    <div class="picture-preview col-md-12" ng-show="showPicture">
+				    	<img class="img-responsive img-rounded center-block" ng-src="{{pictureUrl}}" alt="pictureName" style="width:200px; height:250px">
+				    </div>
+
+				    <p class="help-block">Note: .jpeg | .png only</p>
+			  	</div>
+			  	<div class="buttons col-md-6 col-md-offset-3">
+			  		<button ng-click="createNewUser(newUser)" class="btn btn-primary">Edit</button>
+					<button ng-click="createNewUser(newUser)" class="btn btn-success">Save</button>
+			  	</div>
+				
+				</form>
+
+
+			</div>
+		</div>
+	</div>
 </div>
