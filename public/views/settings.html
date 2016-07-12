@@ -10,37 +10,47 @@
 				<form>
 			    <div class="form-group col-md-6">
 			    	<label for="exampleInputEmail1">First Name</label>
-				    <input ng-model="newUser.firstName" name="firstName" type="text" class="form-control" id="exampleInputEmail1" placeholder={{user.firstName}} required>
+				    <input ng-show="showInputs" name="firstName" type="text" class="form-control" id="exampleInputEmail1" placeholder="{{user.firstName}}" required disabled>
+				    <input ng-model="update.firstName" ng-show="hideInputs" name="firstName" type="text" class="form-control" id="exampleInputEmail1" placeholder="{{user.firstName}}" required>
 			    </div>
 			    <div class="form-group col-md-6">
 			    	<label for="exampleInputEmail1">Last Name</label>
-				    <input ng-model="newUser.lastName" type="text" name="lastName" class="form-control" id="exampleInputPassword1" placeholder={{user.lastName}} required>
+				    <input ng-show="showInputs" type="text" name="lastName" class="form-control" id="exampleInputPassword1" placeholder={{user.lastName}} required disabled>
+				    <input ng-model="update.lastName" ng-show="hideInputs" type="text" name="lastName" class="form-control" id="exampleInputPassword1" placeholder={{user.lastName}} required>
 			    </div>
 			    <div class="form-group col-md-12">
 			    	<label for="exampleInputEmail1">New Password</label>
 				    <div class="input-group">
 	    				<span class="input-group-addon">⚭</span>
-	    				<input ng-model="newUser.password" name="password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" required>
+	    				<input ng-show="showInputs" name="password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" required disabled>
+	    				<input ng-model="update.password" ng-show="hideInputs" name="password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" required>
   					</div>
 			    </div>
 			    <div class="form-group col-md-12">
 			    	<label for="exampleInputEmail1">Favorite Quote</label>
-			    	<textarea ng-model="newUser.favoriteQuote" name="favoriteQuote" class="form-control" rows="3" placeholder={{user.favoriteQuote}} required></textarea>
+			    	<textarea ng-show="showInputs" name="favoriteQuote" class="form-control" rows="3" placeholder={{user.favoriteQuote}} required disabled></textarea>
+			    	<textarea ng-model="update.favoriteQuote" ng-show="hideInputs" name="favoriteQuote" class="form-control" rows="3" placeholder={{user.favoriteQuote}} required></textarea>
 			    </div>
 			    <div class="form-group col-md-6 col-md-offset-3 text-center">
 	    			<label for="exampleInputFile">Upload Photo</label>
 				    
-				    <input filepicker type="filepicker" data-fp-services="computer, facebook" on-success="onSuccess(event.fpfile)" required/>;
-
+				    <input filepicker type="filepicker" ng-show="showInputs"  data-fp-services="computer, facebook" on-success="onSuccess(event.fpfile)" required/>
+				  
 				    <div class="picture-preview col-md-12" ng-show="showPicture">
+				    	<img class="img-responsive img-rounded center-block" ng-src="{{pictureUrl}}" alt="pictureName" style="width:200px; height:250px">
+				    </div>
+				    <div class="picture-preview col-md-12" ng-show="changePicture">
 				    	<img class="img-responsive img-rounded center-block" ng-src="{{pictureUrl}}" alt="pictureName" style="width:200px; height:250px">
 				    </div>
 
 				    <p class="help-block">Note: .jpeg | .png only</p>
 			  	</div>
 			  	<div class="buttons col-md-6 col-md-offset-3">
-			  		<button ng-click="createNewUser(newUser)" class="btn btn-primary">Edit</button>
-					<button ng-click="createNewUser(newUser)" class="btn btn-success">Save</button>
+			  		<button ng-show="hideInputs" class="btn btn-primary" disabled>Edit</button>
+			  		<button ng-click="enableEdit()" ng-show="showInputs" class="btn btn-primary">Edit</button>
+
+					<button ng-show="showInputs" class="btn btn-success" disabled>Save</button>
+					<button ng-click="updateProfile(update)" ng-show="hideInputs" class="btn btn-success">Save</button>
 			  	</div>
 				
 				</form>

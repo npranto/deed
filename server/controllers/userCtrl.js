@@ -42,7 +42,12 @@ module.exports = {
 	// getProfile return all info for the logged in user
 	getProfile(req, res, next){
 		// console.log(req.session);
-		res.status(200).json(req.session.SESSION);
+		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+			if (err) {
+				return res.status(500).json(err);
+			}
+			return res.status(200).json(userFound);
+		})
 	},
 
 	// logout ends an user's session
@@ -216,6 +221,24 @@ module.exports = {
 
 
 			return res.status(200).json(userFound); 
+		})
+	},
+
+	updateProfile(req, res, next){
+		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+			if(err){
+				return res.status(500).json(err);
+			}
+			userFound.firstName = req.body.firstName;
+			userFound.lastName = req.body.lastName;
+			userFound.password = req.body.password;
+			userFound.favoriteQuote = req.body.favoriteQuote;
+			userFound.picture = req.body.picture;
+
+			userFound.save((err, userSaved)=>{
+				console.log("UPDATED PROFILE>>>>>>>>", userSaved)
+			})
+			return res.status(200).json(userFound);
 		})
 	}
 

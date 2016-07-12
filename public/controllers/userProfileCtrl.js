@@ -8,12 +8,13 @@ angular.module('Deed')
 			userProfileService.getProfile()
 			.then((response)=>{
 				console.log(response);	
-				$scope.profile = response.data[0];
+				$scope.profile = response.data;
 				// $scope.iDeedsLength = $scope.profile.iDeeds.length;
 				// $scope.favoritesLength = $scope.profile.favorites.length;
 
 				console.log($scope.profile);
 				userId = $scope.profile._id;
+				// $scope.getFeeds();
 
 				// $state.go('userProfile');
 				console.log(userId);
@@ -80,6 +81,7 @@ angular.module('Deed')
 			userProfileService.makeFavorite(deedId)
 			.then((response)=>{
 				$scope.getFeeds();
+				$scope.getProfile();
 			})
 		};
 
@@ -130,6 +132,7 @@ angular.module('Deed')
 			userProfileService.follow(userId)
 			.then((response)=>{
 				console.log(response);
+				$scope.getProfile();
 			})
 		}
 
@@ -137,6 +140,7 @@ angular.module('Deed')
 			userProfileService.deleteFavorite(favoriteId)
 			.then((response)=>{
 				$scope.getFavorites();
+				$scope.getProfile();
 			})
 		};
 

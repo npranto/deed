@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
 	password: {type: String, required: true},
 	firstName: {type: String, required: true},
 	lastName: {type: String, required: true},
-	favoriteQuote: {type: String},
+	favoriteQuote: {type: String, required: true},
 	picture: {type: String, required: true},
 	createdAt: {type: Date, default: new Date()},
 	iDeeds: [{
