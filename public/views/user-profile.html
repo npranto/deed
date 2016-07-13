@@ -77,9 +77,7 @@
 				<div class="textarea">
 					<textarea ng-model="deed.textContent" class="form-control" rows="4" placeholder="Write a good deed ..."></textarea>
 
-
-
-					<input filepicker type="filepicker" data-fp-services="computer, facebook" data-fp-button-class="btn btn-block btn-warning photos-button" data-fp-button-text='<span class="glyphicon glyphicon-cloud-upload"></span> Photos' data-fp-multiple="true" data-fp-maxFiles="5" on-success="onSuccess(event.fpfile)"/>
+					<input filepicker type="filepicker" data-fp-services="computer, facebook" data-fp-button-class="btn btn-block btn-warning photos-button" data-fp-button-text='<span class="glyphicon glyphicon-cloud-upload"></span> Photos' on-success="onSuccess(event.fpfile)"/>
 
 				    <div class="picture-preview col-md-12" ng-show="showPicture">
 				    	<img class="img-responsive img-rounded" ng-src="{{pictureUrl}}" alt="pictureName" style="width:200px; height:200px">

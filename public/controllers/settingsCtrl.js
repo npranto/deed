@@ -11,7 +11,7 @@ angular.module('Deed')
 			settingsService.fillForm()
 			.then((response)=>{
 				console.log(response);
-				$scope.user = response.data[0];
+				$scope.user = response.data;
 				$scope.pictureUrl = $scope.user.picture;
 			})
 		}
@@ -22,14 +22,14 @@ angular.module('Deed')
 		}
 
 		$scope.onSuccess = function (Blob) {
-			$scope.pictureUrl = Blob.url;
+			$scope.changePictureUrl = Blob.url;
 			$scope.showPicture = false;
 			$scope.changePicture = true;
 
 		}
 
 		$scope.updateProfile = function (update) {
-			$scope.update.picture = $scope.pictureUrl;
+			$scope.update.picture = $scope.changePicture;
 			if ((update !== undefined) && 
 				( update['firstName'] && 
 				  update['lastName'] && 

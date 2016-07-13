@@ -9,7 +9,6 @@ module.exports = {
 		if (!req.session.SESSION) {
 			req.session.SESSION = [];
 		}
-		// console.log(req.session);
 		res.status(200).json();
 	},
 
@@ -30,31 +29,37 @@ module.exports = {
 	// createNewUser logs an user into his/her account
 	login(req, res, next){
 		User.findOne(req.body, (err, userLoggedIn)=>{
+			console.log("userLoggedIn L32>>>>>>", userLoggedIn);
 			if (err) {
 				return res.status(500).json(err);
 			}
 			req.session.SESSION.push(userLoggedIn);
-			// console.log("LOGIN", req.session.SESSION);
+			console.log("LOGIN", req.session.SESSION);
 			return res.status(200).json(userLoggedIn);
 		})
 	},
 
 	// getProfile return all info for the logged in user
 	getProfile(req, res, next){
-		// console.log(req.session);
+		// return res.status(200).json(req.session.SESSION);
+		console.log("SESSION L44",req.session);
 		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
+			console.log("HITTING>>>>>>>>>", req.session);
 			return res.status(200).json(userFound);
 		})
 	},
 
 	// logout ends an user's session
 	logout(req, res, next){
-		// console.log(req.session);
-		req.session.destroy();
-		// console.log(req.session);
+		console.log("gfgfdg", req.session);
+		req.session.destroy((err)=>{
+			console.log("SESSION ERROR", err);
+		});
+		// req.session.SESSION.splice(0, 1);
+		console.log("LOGOUT>>>>>>>>>", req.session);
 		res.status(200).json();
 	},
 

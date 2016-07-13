@@ -78,6 +78,7 @@ body * {
 	height: auto;	/*Change to auto*/
 	background-color: white;
 	opacity: 0.9;
+	z-index: -99;
 }
 .user-profile .profile-sidebar{
 	background-color: #5DCE00;
@@ -89,7 +90,7 @@ body * {
 	/*border-right: 20px solid gray;*/
 	border-bottom-right-radius: 40%;
 	box-shadow: 0 0 50px black;
-
+	z-index: 2;
 }
 .user-profile .profile-pic img{
 	box-shadow: 0 0 10px black;
@@ -187,6 +188,9 @@ body * {
 	resize: none;
 	background-color: lightgray;
 	border-radius: 0px;
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
 }
 .user-profile .photos-button{
 	font-family: "Raleway";
@@ -509,7 +513,7 @@ body * {
 	padding-bottom: 25px;
 	height: auto;
 	width: 100VW;
-	background-color: white;
+	background-color: lightgray;
 }
 .settings .image-input img{
 	padding: 20px 0px 20px 0px;

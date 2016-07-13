@@ -4,7 +4,7 @@ angular.module('Deed')
 		let userId;
 		$scope.showPictures = false;
 
-		$scope.getProfile = function () {
+		let getProfile = function () {
 			userProfileService.getProfile()
 			.then((response)=>{
 				console.log(response);	
@@ -145,14 +145,17 @@ angular.module('Deed')
 		};
 
 		$scope.onSuccess = function (Blob){
-			console.log(Blob);
+			console.log(Blob.url);
 			$scope.pictureUrl = Blob.url;
-			
+			$scope.showPictures = true;
     	};
 
 
 
-		$scope.getProfile();
+    	
+        getProfile();
+        
+		
 		
 
 

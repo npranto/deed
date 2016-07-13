@@ -3,10 +3,10 @@ angular.module('Deed')
 		
 		this.getProfile = function () {
 			return $http.get('/api/user/getProfile')
-				// .then((response)=>{
-				// 	console.log(response);
-				// 	return response;
-				// })
+				.then((response)=>{
+					console.log(response);
+					return response;
+				})
 		};
 
 		this.logout = function () {

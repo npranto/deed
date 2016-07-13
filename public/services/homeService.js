@@ -1,6 +1,6 @@
 angular.module('Deed')
 	.service('homeService', function ($http) {
-		
+	
 		// createUser creates a new user account
 		this.createNewUser = function (newUser) {
 			return $http.post('/api/user/signup', newUser)
