@@ -1,31 +1,22 @@
 angular.module('Deed')
-	.controller('userProfileCtrl', function ($scope, userProfileService, $state) {
+	.controller('userProfileCtrl', function ($scope, userProfileService, $state, $cookies) {
 		
 		let userId;
 		$scope.showPictures = false;
 
 		let getProfile = function () {
-			userProfileService.getProfile()
-			.then((response)=>{
-				console.log(response);	
-				$scope.profile = response.data;
-				// $scope.iDeedsLength = $scope.profile.iDeeds.length;
-				// $scope.favoritesLength = $scope.profile.favorites.length;
-
-				console.log($scope.profile);
-				userId = $scope.profile._id;
-				// $scope.getFeeds();
-
-				// $state.go('userProfile');
-				console.log(userId);
-			})
+			var userLoggedInId = $cookies.getObject('userLoggedIn');
+			console.log(">>>>>>>>>>", userLoggedInId);
+			$scope.profile = userLoggedInId;
 		};
 
 		$scope.logout = function () {
-			userProfileService.logout()
-			.then((response)=>{
-				$state.go("home");	
-			})
+			// userProfileService.logout()
+			// .then((response)=>{
+			console.log("BEFORE LOGOUT", $cookies.getObject('userLoggedIn'));
+			$cookies.remove('userLoggedIn');
+			$state.go("home");	
+			// })
 			
 		};
 

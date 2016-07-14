@@ -14,15 +14,13 @@ module.exports = {
 
 	// createUser saves a new user account
 	createNewUser(req, res, next){
+		console.log(req.body);
 		new User(req.body).save((err, userCreated)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
 			console.log(userCreated);
-			// console.log(userCreated);
-			req.session.SESSION.push(userCreated);
-			console.log(req.session);
-			return res.status(201).json(userCreated);
+			return res.status(200).json(userCreated);
 		})
 	},
 
@@ -33,8 +31,6 @@ module.exports = {
 			if (err) {
 				return res.status(500).json(err);
 			}
-			req.session.SESSION.push(userLoggedIn);
-			console.log("LOGIN", req.session.SESSION);
 			return res.status(200).json(userLoggedIn);
 		})
 	},

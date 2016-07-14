@@ -1,5 +1,5 @@
 angular.module('Deed')
-	.controller('homeCtrl', function ($scope, homeService, $state, $location, $anchorScroll) {
+	.controller('homeCtrl', function ($scope, homeService, $state, $location, $anchorScroll, $cookies) {
 		
 		$scope.showPicture = false;
 		
@@ -8,9 +8,9 @@ angular.module('Deed')
 	    	$anchorScroll();
 	    }
 
-		$scope.startSession =  function () {
-			homeService.startSession();
-		}
+		// $scope.startSession =  function () {
+		// 	homeService.startSession();
+		// }
 
 		$scope.createNewUser = function (newUser) {
 			if ((newUser !== undefined) && 
@@ -22,25 +22,34 @@ angular.module('Deed')
 				) &&
 				($scope.pictureUrl !== undefined)
 			   ){
-			   	console.log("RUNNING");
 				newUser.picture = $scope.pictureUrl;
+				console.log(newUser);
 				homeService.createNewUser(newUser)
 				.then((response)=>{
 					console.log(response);
-					$state.go('newUserSuccess');
+					if (response.data._id) {
+						$cookies.putObject('userLoggedIn', response.data);
+						console.log($cookies.getObject('userLoggedIn'));
+						$state.go('newUserSuccess');
+					}
+					
 				})
 			}
 		}	
 
 		$scope.login = function (user) {
-			console.log(user);
+			// $cookies.putObject('userLoggedIn', user);
 			if ((user !== undefined) && ( user['email'] && user['password'] )) {
-					console.log("LOGINNING IN");
 					homeService.login(user)
 					.then((response)=>{
 						console.log(response);
-						$state.go('userProfile');
-					})
+						if (response._id) {
+							$cookies.putObject('userLoggedIn', response.data);
+							console.log($cookies.getObject('userLoggedIn'));
+							$state.go('userProfile');
+						}
+						
+					}) 
 			}
 		}
 
@@ -53,7 +62,7 @@ angular.module('Deed')
 
 
 
-		$scope.startSession();
+		// $scope.startSession();
 
 
 

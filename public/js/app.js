@@ -1,4 +1,4 @@
-angular.module('Deed', ['ui.router', 'angular-filepicker'])
+angular.module('Deed', ['ui.router', 'angular-filepicker', 'ngCookies'])
 	.config(function ($stateProvider, $urlRouterProvider, filepickerProvider) {		
 		
 		filepickerProvider.setKey('A0gufrMTYQhqPGbsLunFDz');
