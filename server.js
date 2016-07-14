@@ -13,11 +13,6 @@ const port = 8080;
 const mongoUri = 'mongodb://localhost:27017/deed';
 mongoose.connect(mongoUri);
 
-app.use(session({
-	secret: 'jdjfgfdg-dfgdfg-dfgfdgjZ773Y7Z-nasdfjfhajsb4-zaXN',
-	resave: true,
-	saveUninitialized: true
-}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 

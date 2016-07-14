@@ -1,6 +1,8 @@
 angular.module('Deed')
-	.controller('settingsCtrl', function ($scope, settingsService, $state) {
+	.controller('settingsCtrl', function ($scope, settingsService, $state, $cookies) {
 		
+		let userId = $cookies.getObject('userLoggedIn')._id;
+
 		$scope.showInputs = true;
 		$scope.hideInputs = false;
 
@@ -8,11 +10,14 @@ angular.module('Deed')
 		$scope.changePicture = false;
 
 		$scope.fillForm = function () {
-			settingsService.fillForm()
+			console.log($cookies.getObject('userLoggedIn'));
+			settingsService.fillForm(userId)
 			.then((response)=>{
-				console.log(response);
-				$scope.user = response.data;
-				$scope.pictureUrl = $scope.user.picture;
+				if (response.data._id) {
+					console.log(response);
+					$scope.user = response.data;
+					$scope.pictureUrl = $scope.user.picture;
+				}
 			})
 		}
 
@@ -29,7 +34,8 @@ angular.module('Deed')
 		}
 
 		$scope.updateProfile = function (update) {
-			$scope.update.picture = $scope.changePicture;
+			$scope.update.picture = $scope.changePictureUrl;
+			$scope.update._id = userId;
 			if ((update !== undefined) && 
 				( update['firstName'] && 
 				  update['lastName'] && 
@@ -38,8 +44,10 @@ angular.module('Deed')
 				  update['picture']
 				) 
 			   ){
+			   	console.log(update);
 				settingsService.updateProfile(update)
 				.then((response)=>{
+					console.log(response);
 					$state.go('userProfile');
 				})
 			}

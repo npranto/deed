@@ -3,7 +3,7 @@ angular.module('Deed')
 	
 		// createUser creates a new user account
 		this.createNewUser = function (newUser) {
-			return $http.put('/api/user/signup', newUser)
+			return $http.put('/api/user/createNewUser', newUser)
 		}
 
 		// createNewUser logs an user into his/her account

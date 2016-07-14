@@ -4,22 +4,14 @@ let Deed = require('../models/Deed.js');
 
 module.exports = {
 
-	// startSession starts a new session for an user
-	startSession (req, res, next){
-		if (!req.session.SESSION) {
-			req.session.SESSION = [];
-		}
-		res.status(200).json();
-	},
-
 	// createUser saves a new user account
 	createNewUser(req, res, next){
-		console.log(req.body);
 		new User(req.body).save((err, userCreated)=>{
 			if (err) {
+				console.log("ERROR");
 				return res.status(500).json(err);
 			}
-			console.log(userCreated);
+			console.log("userCreated", userCreated);
 			return res.status(200).json(userCreated);
 		})
 	},
@@ -27,89 +19,71 @@ module.exports = {
 	// createNewUser logs an user into his/her account
 	login(req, res, next){
 		User.findOne(req.body, (err, userLoggedIn)=>{
-			console.log("userLoggedIn L32>>>>>>", userLoggedIn);
 			if (err) {
 				return res.status(500).json(err);
 			}
+			console.log("userLoggedIn", userLoggedIn);
 			return res.status(200).json(userLoggedIn);
 		})
 	},
 
 	// getProfile return all info for the logged in user
 	getProfile(req, res, next){
-		// return res.status(200).json(req.session.SESSION);
-		console.log("SESSION L44",req.session);
-		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+		User.findById(req.body._id, (err, userFound)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
-			console.log("HITTING>>>>>>>>>", req.session);
 			return res.status(200).json(userFound);
 		})
 	},
 
-	// logout ends an user's session
-	logout(req, res, next){
-		console.log("gfgfdg", req.session);
-		req.session.destroy((err)=>{
-			console.log("SESSION ERROR", err);
-		});
-		// req.session.SESSION.splice(0, 1);
-		console.log("LOGOUT>>>>>>>>>", req.session);
-		res.status(200).json();
-	},
-
+	// creates a new post 
 	postDeed (req, res, next){
 		User.findById(req.body.author, (err, userFound)=>{
-			
 			req.body.author = userFound;
-
 			new Deed(req.body).save( (err, deedPosted)=>{
 				if (err) {
 					return res.status(500).json(err);
 				}
 				userFound.iDeeds.push(deedPosted);
-				userFound.save((err, result)=>{
-					// console.log(result)
-					return res.status(200).json(deedPosted);
-				});
-				
+				userFound.save((err, userSaved)=>{});
+				return res.status(200).json(deedPosted);
 			})
 		})
 	},
 
+	// gets user's iDeeds 
 	getiDeeds(req, res, next){
-		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{})
+		User.findById(req.body._id, (err, userFound)=>{})
 		.populate('iDeeds')
-		.exec((err, result)=>{
+		.exec((err, userPopulated)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
-			return res.status(200).json(result);
+			return res.status(200).json(userPopulated);
 
 		})
 	},
 
+	// gets all the posts by all the users
 	getFeeds(req, res, next){
 		Deed.find((err, allDeeds)=>{
-			// console.log("ALLDEEDS", allDeeds);
 			if (err) {
 				return res.status(500).json(err);
 			}
 		})
 		.populate('author')
-		.exec((err, result)=>{
+		.exec((err, deedsPopulated)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
-			// console.log(result);
-			return res.status(200).json(result);		
+			return res.status(200).json(deedsPopulated);		
 		})
 	},
 
+	// gets posts that user starred
 	getFavorites(req, res, next){
-		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
-			console.log(userFound);
+		User.findById(req.body._id, (err, userFound)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
@@ -125,90 +99,74 @@ module.exports = {
 			}, (err, authorPopulated)=>{
 				return res.status(200).json(authorPopulated);
 			})
-			
 		})
 	},
 
+	// returns user found on database
 	searchUsers(req, res, next){
-		console.log("HELLO");
-		console.log("FIRST NAME:", req.body);
 		User.find(req.body, (err, firstsFound)=>{
-			console.log(firstsFound);
 			if (err) {
 				return res.status(500).json(err);
 			}
-			console.log("firstsFound", firstsFound);
 			return res.status(200).json(firstsFound);
 		})
 	},
 
+	// stores user's following list with followed user &
+	// store's followed user's follower list with the user
 	follow(req, res, next){
-		// console.log("FOLLOW USERID", req.body)
 		User.findById(req.body._id, (err, userFound)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
-			if ((userFound.followers.indexOf(req.session.SESSION[0]._id)) === -1) {
-				userFound.followers.push(req.session.SESSION[0]);
-				userFound.save((err, userSaved)=>{
-					// console.log("userSaved", userSaved);
-					// console.log("ME", req.session.SESSION[0]);
-				})
-				User.findById(req.session.SESSION[0]._id, (err, sessionUserFound)=>{
-					console.log("MYSELF");
-					// req.session.SESSION[0].following.push(userFound);
-					sessionUserFound.following.push(userFound);
-					sessionUserFound.save((err, sessionUserSaved)=>{
-					// console.log("userSaved", userSaved);
-					// console.log("ME", req.session.SESSION[0]);
-					})
-				})
-			}
-			
-			// console.log("userFound", userFound);
-			// console.log("ME", req.session.SESSION[0]);
+			User.findOne({email: req.body.email}, (err, userLoggedIn)=>{
+				if ((userFound.followers.indexOf(userFound._id)) === -1) {
+					userFound.followers.push(userLoggedIn);
+					userFound.save((err, userSaved)=>{})
+
+					userLoggedIn.following.push(userFound);
+					userLoggedIn.save((err, userLoggedInSaved)=>{})
+				}
+			})
 			return res.status(200).json(userFound);
 		})
 	},
 
+	// returns a list of users who user follow
 	getFollowing(req, res, next){
-		console.log("req.session", req.session);
-		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+		User.findById(req.body._id, (err, userFound)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
-			console.log("userFound", userFound);
 		})
 		.populate('following')
 		.exec((err, followingPopulated)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
-			console.log('followingPopulated', followingPopulated);
 			return res.status(200).json(followingPopulated);
 		})
 	},
 
+	// return a list of users who follow the user
 	getFollowers(req, res, next){
-		console.log("req.session", req.session);
-		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+		User.findById(req.body._id, (err, userFound)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
-			console.log("userFound", userFound);
 		})
 		.populate('followers')
 		.exec((err, followersPopulated)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
-			console.log('followingPopulated', followersPopulated);
 			return res.status(200).json(followersPopulated);
 		})
 	},
 
+	// deletes specific post from the user's favorite's list
 	deleteFavoriteDeed(req, res, next){
-		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+		User.findOne({email: req.body.email}, (err, userFound)=>{
 			if (err) {
 				return res.status(500).json(err);
 			}
@@ -216,17 +174,16 @@ module.exports = {
 			userFound.save((err, userSaved)=>{})
 
 			Deed.findById(req.body._id, (err, deedFound)=>{
-				deedFound.stars.splice(deedFound.stars.indexOf(req.session.SESSION[0]._id), 1);
+				deedFound.stars.splice(deedFound.stars.indexOf(userFound._id), 1);
 				deedFound.save((err, deedSaved)=>{});
 			})
-
-
 			return res.status(200).json(userFound); 
 		})
 	},
 
+	// updates user's profile information through settings
 	updateProfile(req, res, next){
-		User.findById(req.session.SESSION[0]._id, (err, userFound)=>{
+		User.findById(req.body._id, (err, userFound)=>{
 			if(err){
 				return res.status(500).json(err);
 			}
@@ -236,20 +193,10 @@ module.exports = {
 			userFound.favoriteQuote = req.body.favoriteQuote;
 			userFound.picture = req.body.picture;
 
-			userFound.save((err, userSaved)=>{
-				console.log("UPDATED PROFILE>>>>>>>>", userSaved)
-			})
+			userFound.save((err, userSaved)=>{})
 			return res.status(200).json(userFound);
 		})
 	}
 
-
-
-
-
-
-
-
-
-
+// end of userCtrl
 }

@@ -43,7 +43,7 @@ angular.module('Deed')
 					homeService.login(user)
 					.then((response)=>{
 						console.log(response);
-						if (response._id) {
+						if (response.data._id) {
 							$cookies.putObject('userLoggedIn', response.data);
 							console.log($cookies.getObject('userLoggedIn'));
 							$state.go('userProfile');

@@ -135,7 +135,7 @@ body * {
 	text-decoration: none;
 }
 .user-profile .posts-following a:hover h2{
-	color: gray;
+	color: #D61111;
 }
 .user-profile .posts-following a:hover p{
 	color: white;
@@ -183,6 +183,9 @@ body * {
 }
 .user-profile .textarea{
 	margin-left: 55px;
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
 }
 .user-profile textarea{
 	resize: none;
@@ -193,6 +196,7 @@ body * {
 	justify-content: flex-start;
 }
 .user-profile .photos-button{
+
 	font-family: "Raleway";
 }
 .user-profile .post-button{
@@ -221,13 +225,14 @@ body * {
 	font-family: "Lato"
 }
 .user-profile .reaction button{
+	width: 75px;
 	border-radius: 0px;
 	box-shadow: 0 0 5px black;
 }
 .user-profile .post{
 	background-color: white;
 /*	box-shadow: 0 0 5px black;
-*/	padding: 10px;
+*/	padding: 10px 0px 50px 10px;
 }
 .user-profile .post .f-name p{
 	font-size: 13px;
@@ -240,12 +245,52 @@ body * {
 	color: gray;
 }
 .user-profile .post-content{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
 	margin-left: 55px;
+	padding-right: 0px;
 }
 .user-profile .unblock{
-	margin-left: 10px;
+	padding: 0px;
 }
-
+.user-profile .unblock p{
+	margin-left: 15px;
+}
+.user-profile .moment-deed{
+	margin-top: 25px;
+	margin-left: 55px;
+}
+.user-profile .moment-deed-title{
+	background-color: black;
+	color: white;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	font-family: "Raleway";
+	border-bottom-left-radius: 500px;
+	border-bottom-right-radius: 500px;
+}
+.user-profile .moment-deed .user-header img{
+	width: 200px;
+	height: 100%;
+}
+.user-profile .moment-deed .f-name{
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+}
+.user-profile .moment-deed .f-name p{
+	font-size: 20px;
+}
+.user-profile .moment-deed .post-content{
+	margin: 15px;
+}
+.user-profile .moment-deed .home-feed button{
+	padding: 20px;
+	font-family: "Raleway";
+	font-size: 20px;
+	border-radius: 0px;
+}
 /*///////////////////////// new-user-success.html ///////////////////////////*/
 .new-user-success{
 	width: 100VW;
@@ -375,11 +420,16 @@ body * {
 .followers .check{
 	margin-bottom: 5px;
 }
+.followers .user-info{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
 .followers .profile-pic{
+	width: 115px;
 	height: 125px;
 	margin-right: 15px;
 }
-
 .followers .header {
 	border-bottom: 5px solid black;
 }
@@ -412,7 +462,13 @@ body * {
 .following .check{
 	margin-bottom: 5px;
 }
+.following .user-info{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
 .following .profile-pic{
+	width: 115px;
 	height: 125px;
 	margin-right: 15px;
 }

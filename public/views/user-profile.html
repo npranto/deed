@@ -47,7 +47,7 @@
 		</div>
 
 	<!-- deed-content -->
-		<div class="deed-content col-md-6 animated slideInDown">
+		<div class="deed-content col-md-9 animated slideInDown">
 			<nav-dir></nav-dir>
 
 			<div class="search-box col-md-6 col-md-offset-3">
@@ -75,22 +75,56 @@
 					</div>
 				</div>
 				<div class="textarea">
-					<textarea ng-model="deed.textContent" class="form-control" rows="4" placeholder="Write a good deed ..."></textarea>
+					<textarea ng-model="deed.textContent" class="form-control col-md-8" rows="4" placeholder="Write a good deed ..."></textarea>
 
-					<input filepicker type="filepicker" data-fp-services="computer, facebook" data-fp-button-class="btn btn-block btn-warning photos-button" data-fp-button-text='<span class="glyphicon glyphicon-cloud-upload"></span> Photos' on-success="onSuccess(event.fpfile)"/>
-
-				    <div class="picture-preview col-md-12" ng-show="showPicture">
-				    	<img class="img-responsive img-rounded" ng-src="{{pictureUrl}}" alt="pictureName" style="width:200px; height:200px">
+				    <div class="picture-preview" ng-show="showPicture">
+				    	<img class="img-responsive" ng-src="{{postPhotoUrl}}" alt="pictureName" style="width:300px; height:250px">
 				    </div>
-
-
-
+				</div>
+				<div class="post-button">
+					<input filepicker type="filepicker" data-fp-services="computer, facebook" data-fp-button-class="btn btn-block btn-warning" data-fp-button-text='<span class="glyphicon glyphicon-cloud-upload"></span> Photos' on-success="onSuccess(event.fpfile)"/>
 				</div>
 				<div class="post-button">
 					<button ng-click="postDeed(deed)" class="btn btn-block btn-primary btn-primary"><span class="glyphicon glyphicon-plus"></span> Post</button>
 				</div>
 			</div>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 
+			<div class="moment-deed" ng-show="showMoment">
+				<h1 class="moment-deed-title text-center">Deed of the Moment</h1>
+
+				<div class="post-reaction animated fadeInUp" >
+					<div class="post">
+						<div class="user-header">
+							<img class="img-responsive img-cube" ng-src="{{moment.author.picture}}">
+							<div class="f-name"> 
+								<p class="bold">{{moment.author.firstName}} {{moment.author.lastName}}</p>
+								<p class="gray">{{moment.createdAt | date : 'EEEE, MMMM d, y'}}</p>
+								<div class="post-content">
+									<div class="col-md-8">
+										<blockquote>
+											<div class="unblock">
+												<p>{{moment.textContent}}</p>
+											</div>
+										</blockquote>
+									</div>
+									<div class="unblock col-md-3 text-right" ng-if="hasPhotoContent(moment)" ng-show="showPhotoContent">
+										<img ng-src="{{moment.photoContent}}" class="img-responsive img-thumbnail" style="width:300px; height:250px">
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="home-feed text-center">
+					<button ui-sref=".homeFeed" ng-click="getFeeds();switchToHomeFeed()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Home</button>
+				</div>
+
+			</div>
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 			<div class="posts">
 
 				<div ui-view="homeFeed"></div>

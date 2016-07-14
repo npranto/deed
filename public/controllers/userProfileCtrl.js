@@ -2,22 +2,38 @@ angular.module('Deed')
 	.controller('userProfileCtrl', function ($scope, userProfileService, $state, $cookies) {
 		
 		let userId;
-		$scope.showPictures = false;
+		let userEmail;
+		$scope.showPicture = false;
+		$scope.showMoment = true;
+		$scope.showPhotoContent = false;
 
 		let getProfile = function () {
 			var userLoggedInId = $cookies.getObject('userLoggedIn');
-			console.log(">>>>>>>>>>", userLoggedInId);
-			$scope.profile = userLoggedInId;
+			userId = userLoggedInId._id;
+			userEmail = userLoggedInId.email;
+			userProfileService.getProfile(userId)
+			.then((response)=>{
+				console.log(response);
+				$scope.profile = response.data;
+			})
+			
 		};
 
+		let getMoment = function () {
+			userProfileService.getMoment()
+			.then((response)=>{
+				console.log(response);
+				$scope.moment = response.data;
+			})
+		}
+
+		$scope.switchToHomeFeed = function () {
+			$scope.showMoment = false;
+		}
+
 		$scope.logout = function () {
-			// userProfileService.logout()
-			// .then((response)=>{
-			console.log("BEFORE LOGOUT", $cookies.getObject('userLoggedIn'));
 			$cookies.remove('userLoggedIn');
-			$state.go("home");	
-			// })
-			
+			$state.go("home");				
 		};
 
 		$scope.getFeeds = function () {
@@ -26,10 +42,17 @@ angular.module('Deed')
 				console.log(response);
 				$scope.feeds = response.data.reverse();
 			})
-
 		};
 
-		$scope.getiDeeds = function (userId) {
+		$scope.hasPhotoContent = function (model) {
+			if (model.photoContent) {
+				$scope.showPhotoContent = true;
+				return true;
+			}
+			return false;
+		}
+
+		$scope.getiDeeds = function () {
 			userProfileService.getiDeeds(userId)
 			.then((response)=>{
 				console.log(response);
@@ -40,7 +63,7 @@ angular.module('Deed')
 		};
 
 		$scope.getFollowing = function () {
-			userProfileService.getFollowing()
+			userProfileService.getFollowing(userId)
 			.then((response)=>{
 				console.log(response);
 				$scope.following = response.data.following;
@@ -48,7 +71,7 @@ angular.module('Deed')
 		};
 
 		$scope.getFollowers = function () {
-			userProfileService.getFollowers()
+			userProfileService.getFollowers(userId)
 			.then((response)=>{
 				console.log(response);
 				$scope.followers = response.data.followers;
@@ -56,28 +79,29 @@ angular.module('Deed')
 		};
 
 		$scope.postDeed = function (deed) {
+			console.log(">>>>>>>>>>", deed);
 			userProfileService.postDeed(deed, userId)
 			.then((response)=>{
 				console.log(response);
 				$scope.deed.textContent = "";
 				$scope.getFeeds();
-				$scope.getiDeeds(userId);
-				$scope.getProfile();
+				// $scope.getiDeeds(userId);
+				getProfile();
 
 			})
 		};
 
 		$scope.makeFavorite = function (deedId) {
-			console.log(deedId);
-			userProfileService.makeFavorite(deedId)
+			console.log(deedId, userEmail);
+			userProfileService.makeFavorite(deedId, userEmail)
 			.then((response)=>{
 				$scope.getFeeds();
-				$scope.getProfile();
+				getProfile();
 			})
 		};
 
 		$scope.getFavorites = function () {
-			userProfileService.getFavorites()
+			userProfileService.getFavorites(userId)
 			.then((response)=>{
 				console.log(response);
 				$scope.favorites = response.data.favorites.reverse();
@@ -86,14 +110,14 @@ angular.module('Deed')
 
 		$scope.likePost = function (deedId) {
 			console.log("deedId", deedId);
-			userProfileService.likePost(deedId)
+			userProfileService.likePost(deedId, userEmail)
 			.then((response)=>{
 				$scope.getFeeds();
 			})
 		};
 
 		$scope.lovePost = function (deedId) {
-			userProfileService.lovePost(deedId)
+			userProfileService.lovePost(deedId, userEmail)
 			.then((response)=>{
 				console.log(response);
 				$scope.getFeeds();
@@ -101,7 +125,7 @@ angular.module('Deed')
 		};
 
 		$scope.sobPost = function (deedId) {
-			userProfileService.sobPost(deedId)
+			userProfileService.sobPost(deedId, userEmail)
 			.then((response)=>{
 				console.log(response);
 				$scope.getFeeds();
@@ -118,33 +142,35 @@ angular.module('Deed')
 			})
 		}
 
-		$scope.follow = function (userId) {
-			console.log("FOLLOW USERID", userId)
-			userProfileService.follow(userId)
+		$scope.follow = function (searchUserId) {
+			// console.log("FOLLOW USERID", searchUserId)
+			userProfileService.follow(searchUserId, userEmail)
 			.then((response)=>{
 				console.log(response);
-				$scope.getProfile();
+				getProfile();
 			})
 		}
 
 		$scope.deleteFavorite = function(favoriteId){
-			userProfileService.deleteFavorite(favoriteId)
+			userProfileService.deleteFavorite(favoriteId, userEmail)
 			.then((response)=>{
 				$scope.getFavorites();
-				$scope.getProfile();
+				getProfile();
 			})
 		};
 
 		$scope.onSuccess = function (Blob){
 			console.log(Blob.url);
-			$scope.pictureUrl = Blob.url;
-			$scope.showPictures = true;
+			$scope.postPhotoUrl = Blob.url;
+			$scope.deed.photoContent = $scope.postPhotoUrl;
+			$scope.showPicture = true;
     	};
 
 
 
     	
         getProfile();
+        getMoment();
         
 		
 		

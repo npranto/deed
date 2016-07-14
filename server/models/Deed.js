@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const DeedSchema = new mongoose.Schema({
 	author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 	textContent: {type: String, required: true},
+	photoContent: {type: String},
 	createdAt: {type: Date, default: new Date()},
 	stars: [{
 		type: mongoose.Schema.Types.ObjectId, ref: 'User'

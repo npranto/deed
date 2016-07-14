@@ -1,4 +1,5 @@
 node_modules/
+public/videos/*
 public/css/animate.css
 public/img/*
 public/bower_components/*
