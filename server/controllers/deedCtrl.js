@@ -17,6 +17,7 @@ module.exports = {
 					numberOfLikes = allDeeds[i].likes.length;
 				}
 			}
+			
 			Deed.findById(mostLiked._id, (err, momentFound)=>{})
 			.populate('author')
 			.exec((err, momentPopulated)=>{

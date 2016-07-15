@@ -41,6 +41,7 @@ angular.module('Deed')
 			.then((response)=>{
 				console.log(response);
 				$scope.feeds = response.data.reverse();
+				$scope.showMoment = false;
 			})
 		};
 
@@ -59,6 +60,7 @@ angular.module('Deed')
 				$scope.deeds = response.data.iDeeds.reverse();
 				$scope.author = response.data.firstName + " " + response.data.lastName;
 				$scope.picture = response.data.picture;
+				$scope.showMoment = false;
 			})
 		};
 
@@ -67,6 +69,7 @@ angular.module('Deed')
 			.then((response)=>{
 				console.log(response);
 				$scope.following = response.data.following;
+				$scope.showMoment = false;
 			});
 		};
 
@@ -75,6 +78,7 @@ angular.module('Deed')
 			.then((response)=>{
 				console.log(response);
 				$scope.followers = response.data.followers;
+				$scope.showMoment = false;
 			});
 		};
 
@@ -106,6 +110,7 @@ angular.module('Deed')
 			.then((response)=>{
 				console.log(response);
 				$scope.favorites = response.data.favorites.reverse();
+				$scope.showMoment = false;
 			})
 		};
 
