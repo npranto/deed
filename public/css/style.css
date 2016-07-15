@@ -134,7 +134,10 @@ body * {
 	color: black;
 	text-decoration: none;
 }
-.user-profile .posts-following a:hover h2{
+.user-profile .posts-following h1{
+	color: gray;
+}
+.user-profile .posts-following a:hover h1{
 	color: #D61111;
 }
 .user-profile .posts-following a:hover p{

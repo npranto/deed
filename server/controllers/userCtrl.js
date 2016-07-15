@@ -120,7 +120,7 @@ module.exports = {
 				return res.status(500).json(err);
 			}
 			User.findOne({email: req.body.email}, (err, userLoggedIn)=>{
-				if ((userFound.followers.indexOf(userFound._id)) === -1) {
+				if ((userFound.followers.indexOf(userLoggedIn._id)) === -1) {
 					userFound.followers.push(userLoggedIn);
 					userFound.save((err, userSaved)=>{})
 
