@@ -84,6 +84,7 @@ angular.module('Deed')
 			.then((response)=>{
 				console.log(response);
 				$scope.deed.textContent = "";
+				$scope.showPicture = false;
 				$scope.getFeeds();
 				// $scope.getiDeeds(userId);
 				getProfile();
